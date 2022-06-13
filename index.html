@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Read CSV with Pandas using PyScript</title>
+
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!---pyodide--> 
+
+<py-env>
+   - matplotlib
+   - pandas
+   - seaborn
+</py-env>
+
+</head>
+
+<body>
+    
+    <h1>Read CSV with Pandas using PyScript</h1>
+
+    <p id="csv"></p>
+
+    <py-script>
+
+        import pandas as pd 
+
+        from pyodide.http import open_url
+
+        url_content = open_url("https://gist.githubusercontent.com/netj/8836201/raw/6f9306ad21398ea43cba4f7d537619d0e07d5ae3/iris.csv")
+
+        df = pd.read_csv(url_content)
+        
+        csv = Element('csv')
+
+        csv.write(df.head(10))
+
+    </py-script>
+
+</body>
+
+</html>
